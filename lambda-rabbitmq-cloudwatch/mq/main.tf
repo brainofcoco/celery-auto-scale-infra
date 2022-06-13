@@ -9,7 +9,7 @@ resource "aws_mq_broker" "default" {
 
   user {
     username = "admin"
-    password = "BrainOfCoco123@"
+    password = "admin123333@"
   }
 
   logs {
