@@ -27,6 +27,7 @@ def get_queue_depths_and_publish_to_cloudwatch(host,
     :param namespace:
     :return:
     """
+    print("Done")
     depths = get_queue_depths(host, port, username, password, vhost)
     publish_depths_to_cloudwatch(depths, namespace)
 
@@ -44,7 +45,7 @@ def get_queue_depths(host, port, username, password, vhost):
     """
     # Get list of queues
     try:
-        r = requests.get('https://{}:{}/api/queues'.format(host, port),
+        r = requests.get('https://{}/api/queues'.format(host, port),
                          auth=requests.auth.HTTPBasicAuth(username, password))
     except requests.exceptions.RequestException as e:
         log('rabbitmq_connection_failures')
@@ -65,9 +66,8 @@ def get_queue_depths(host, port, username, password, vhost):
 
         # Get individual queue counts
         try:
-            r = requests.get('https://{}:{}/api/queues/{}/{}'.format(
+            r = requests.get('https://{}/api/queues/{}/{}'.format(
                 host,
-                port,
                 urllib.parse.quote_plus(vhost),
                 urllib.parse.quote_plus(q['name'])),
                 auth=requests.auth.HTTPBasicAuth(username, password))
@@ -122,11 +122,13 @@ def lambda_handler(event, context):
     port = os.environ.get("RABBITMQ_PORT")
     user = os.environ.get("RABBITMQ_USER")
     pw = os.environ.get("RABBITMQ_PASS")
+    print("Loading...")
     get_queue_depths_and_publish_to_cloudwatch(
         host=host,
         port=port,
         username=user,
-        password=boto3.client('kms').decrypt(CiphertextBlob=b64decode(pw))[
+        password=boto3.client('kms').decrypt(CiphertextBlob=b64decode(pw),
+            EncryptionContext={'LambdaFunctionName': 'celery_auto_scale'})[
             'Plaintext'].decode('utf8').replace('\n', ''),
         vhost="/",
         namespace=queue_group + ".rabbitmq.depth")

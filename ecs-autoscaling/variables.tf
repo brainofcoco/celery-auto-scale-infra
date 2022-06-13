@@ -1,11 +1,11 @@
 variable "medium_worker" {
   type = map(string)
   default = {
-    "minimum_count" = 1
-    "maximum_count" = 4
-    "desired_count_scale_step_1" = 1
-    "desired_count_scale_step_2" = 2
-    "desired_count_scale_step_3" = 3
+    "minimum_count" = 2
+    "maximum_count" = 20
+    "desired_count_scale_step_1" = 2
+    "desired_count_scale_step_2" = 10
+    "desired_count_scale_step_3" = 20
   }
 }
 

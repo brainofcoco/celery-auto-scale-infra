@@ -18,23 +18,23 @@ variable "runtime" {
 }
 
 variable "kms_arn" {
-  default = "arn:aws:kms:us-west-2:059260351090:key/1d09e183-e664-4dc9-ac33-7d5f5a7c7d75"
+  default = "arn:aws:kms:us-west-2:059260351090:key/mrk-c55602098de84927abc9ea9ce20ff3a8"
 }
 
 variable "vpc_id" {
-  default = "vpc-069a39fd1a41470db"
+  default = "vpc-0873797c4094b5221"
 }
 
 variable "private_subnet_ids" {
   type = list(string)
   description = "Subnet ID for network interface"
-  default = [ "subnet-0d791cf9a3780b9e3" ]
+  default = [ "subnet-0ba7509dbc6794125", "subnet-0bbc7532bad769d2c" ]
 }
 
 variable "secrets" {
   type = map(string)
   default = {
-    "RABBITMQ_HOST" = "amqps://b-b7ffcf13-28f3-44fc-bd59-341cee371087.mq.us-west-2.amazonaws.com:5671",
+    "RABBITMQ_HOST" = "b-b7ffcf13-28f3-44fc-bd59-341cee371087.mq.us-west-2.amazonaws.com",
     "RABBITMQ_PORT" = "5671",
     "RABBITMQ_USER" = "admin",
     "RABBITMQ_PASS" = "BrainOfCoco123@"
