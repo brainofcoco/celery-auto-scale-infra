@@ -1,0 +1,20 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+.DS_Store
+*.yaml
+
+# Test binary, build with `go test -c`
+*.test
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock
+.terraform/
+.DS_Store
+.terraform.*
+*.pem
+*-bkup
