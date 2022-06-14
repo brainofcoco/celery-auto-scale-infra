@@ -7,7 +7,7 @@ import urllib
 
 
 import boto3
-from botocore.vendored import requests
+import requests
 
 
 def get_queue_depths_and_publish_to_cloudwatch(host,

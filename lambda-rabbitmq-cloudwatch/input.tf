@@ -37,7 +37,7 @@ variable "secrets" {
     "RABBITMQ_HOST" = "b-b7ffcf13-28f3-44fc-bd59-341cee371087.mq.us-west-2.amazonaws.com",
     "RABBITMQ_PORT" = "5671",
     "RABBITMQ_USER" = "admin",
-    "RABBITMQ_PASS" = "BrainOfCoco123@"
+    "RABBITMQ_PASS" = "admin"
     # AWS_REGION is a reserved key
   }
 }
